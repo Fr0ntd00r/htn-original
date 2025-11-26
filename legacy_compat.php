@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Polyfills for deprecated PHP 4-era APIs so the legacy codebase can run on
  * PHP 8.3 without fatal errors. These helpers mimic the behaviour of removed
