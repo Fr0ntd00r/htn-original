@@ -4,10 +4,13 @@
 $database_prefix = 'htn_server';
 $database_suffix = '';
 
-$db_use_this_values = false;
-$db_host = '';
-$db_username = 'root';
-$db_password = '';
+# Explicit connection details for MariaDB/MySQL.
+$db_use_this_values = true;
+$db_host = getenv('HTN_DB_HOST') ?: '127.0.0.1';
+$db_port = (int) (getenv('HTN_DB_PORT') ?: 3306);
+$db_username = getenv('HTN_DB_USER') ?: 'root';
+$db_password = getenv('HTN_DB_PASSWORD') ?: '';
+$db_charset = 'utf8mb4';
 
 # STYLESHEETS:
 $standard_stylesheet = 'crystal';

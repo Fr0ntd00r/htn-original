@@ -32,8 +32,17 @@ Du kannst auch so lange dem <a href="http://forum.hackthenet.org/">Forum</a> ode
 }
 #} #else ini_set('display_errors',1);
 
+require_once __DIR__.'/legacy_mysql.php';
 include 'config.php';
 $STYLESHEET = $standard_stylesheet;
+
+LegacyMySQL::configure(
+    $db_host !== '' ? $db_host : LegacyMySQL::$host,
+    $db_username,
+    $db_password,
+    $db_port,
+    $db_charset
+);
 
 if ($db_use_this_values) {
     $dbcon = @mysql_connect($db_host, $db_username, $db_password);
