@@ -1,12 +1,21 @@
 <?php
+declare(strict_types=1);
 
 if (!defined('IN_HTN')) {
     die('Hacking attempt');
 }
 
+require_once __DIR__.'/legacy_compat.php';
+
 #if($_COOKIE['SSL']=='yes' && $_SERVER['HTTP_HOST']!='ssl-id1.de') {
 #  header('Location: http://ssl-id1.de/htn.ir0.de'.$_SERVER['REQUEST_URI']);
 #}
+
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('default_charset', 'UTF-8');
+date_default_timezone_set('UTC');
+mb_internal_encoding('UTF-8');
 
 define('LF', "\n");
 
