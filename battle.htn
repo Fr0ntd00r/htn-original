@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Alle Angriffe werden hier drin abgehandelt
@@ -51,7 +51,7 @@ function fill(s) {
         echo '<div class="content" id="attacks">';
         echo '<h2>Operation Center</h2>';
 
-        if (!isattackallowed(&$next, &$last)) {
+        if (!isattackallowed($next, $last)) {
 #echo 'next='.$next.', last='.$last.'<br />';
             $total = ($next - $last);
 #echo 'total='.$total.'<br />';

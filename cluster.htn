@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 define('IN_HTN', 1);
 $FILE_REQUIRES_PC = false;
@@ -21,11 +21,11 @@ if ($action == '') {
 }
 
 # Konstanten für Cluster-Verträge:
-define('CV_WAR', 1, false);
-define('CV_BEISTAND', 2, false);
-define('CV_PEACE', 3, false);
-define('CV_NAP', 5, false);
-define('CV_WING', 6, false);
+define('CV_WAR', 1);
+define('CV_BEISTAND', 2);
+define('CV_PEACE', 3);
+define('CV_NAP', 5);
+define('CV_WING', 6);
 
 # Cluster-Daten lesen:
 $clusterid = $usr['cluster'];

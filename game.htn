@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 define('IN_HTN', 1);
 $FILE_REQUIRES_PC = true;
@@ -946,9 +946,9 @@ switch ($action) {
             }
 
             {
-                $pc =& $x;
-                $avail = isavailh('scan', &$x);
-                if (!isattackallowed(&$next, &$last) && $avail) {
+                $pc = $x;
+                $avail = isavailh('scan', $x);
+                if (!isattackallowed($next, $last) && $avail) {
                     $attack = 'nein, erst wieder '.nicetime3($next);
                 } elseif ($avail) {
                     $attack = '<span style="color:green">m&ouml;glich</span>';

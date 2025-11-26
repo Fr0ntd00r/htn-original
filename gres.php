@@ -1,12 +1,21 @@
 <?php
+declare(strict_types=1);
 
 if (!defined('IN_HTN')) {
     die('Hacking attempt');
 }
 
+require_once __DIR__.'/legacy_compat.php';
+
 #if($_COOKIE['SSL']=='yes' && $_SERVER['HTTP_HOST']!='ssl-id1.de') {
 #  header('Location: http://ssl-id1.de/htn.ir0.de'.$_SERVER['REQUEST_URI']);
 #}
+
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('default_charset', 'UTF-8');
+date_default_timezone_set('UTC');
+mb_internal_encoding('UTF-8');
 
 define('LF', "\n");
 
@@ -32,8 +41,17 @@ Du kannst auch so lange dem <a href="http://forum.hackthenet.org/">Forum</a> ode
 }
 #} #else ini_set('display_errors',1);
 
+require_once __DIR__.'/legacy_mysql.php';
 include 'config.php';
 $STYLESHEET = $standard_stylesheet;
+
+LegacyMySQL::configure(
+    $db_host !== '' ? $db_host : LegacyMySQL::$host,
+    $db_username,
+    $db_password,
+    $db_port,
+    $db_charset
+);
 
 if ($db_use_this_values) {
     $dbcon = @mysql_connect($db_host, $db_username, $db_password);
@@ -144,10 +162,10 @@ $ram_levels = array(
     9 => 4096,
 );
 
-define('DPH_ADS', 22, false);
-define('DPH_DIALER', 24, false);
-define('DPH_AUCTIONS', 26, false);
-define('DPH_BANKHACK', 32, false);
+define('DPH_ADS', 22);
+define('DPH_DIALER', 24);
+define('DPH_AUCTIONS', 26);
+define('DPH_BANKHACK', 32);
 
 function gFormatText(&$s)
 {
@@ -195,7 +213,7 @@ function create_sid()
     // Session-ID mit beliebig vielen Zeichen.
     // Bei der Generierung werden mehrere Zufallszahlen ber&uuml;cksichtigt
     //  by I.Runge 2004
-    define('SID_LENGTH', 15, false); # Anzahl der Zeichen
+    define('SID_LENGTH', 15); # Anzahl der Zeichen
     mt_srand((double)microtime() * 1000000);
     $sid = crypt(randomx(mt_rand(5, 20)), randomx(mt_rand(3, 15)));
     $sid = str_replace('/', randomchar(), $sid);
