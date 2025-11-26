@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 $starttime = microtime();
 
@@ -108,26 +108,26 @@ if (file_exists('data/worm.txt') === true && ($modulo == 0 || $modulo == 30)) {
 }
 
 #if($server==1)
-#  define('MAX_CLUSTER_MEMBERS',64,false); # Maximale Anzahl von Mitgliedern eines Clusters
+#  define('MAX_CLUSTER_MEMBERS',64); # Maximale Anzahl von Mitgliedern eines Clusters
 #else
-define('MAX_CLUSTER_MEMBERS', 32, false); # Maximale Anzahl von Mitgliedern eines Clusters
+define('MAX_CLUSTER_MEMBERS', 32); # Maximale Anzahl von Mitgliedern eines Clusters
 
 if ($usr['bigacc'] != 'yes') {
-    define('UPGRADE_QUEUE_LENGTH', 3, false);
+    define('UPGRADE_QUEUE_LENGTH', 3);
 } else {
-    define('UPGRADE_QUEUE_LENGTH', 5, false);
+    define('UPGRADE_QUEUE_LENGTH', 5);
 }
 
-define('CS_ADMIN', 1000, false);
-define('CS_COADMIN', 900, false);
-define('CS_WAECHTER', 20, false);
-define('CS_JACKASS', 10, false);
-define('CS_WARLORD', 90, false);
-define('CS_KONVENTIONIST', 80, false);
-define('CS_SUPPORTER', 70, false);
-define('CS_MITGLIEDERMINISTER', 50, false);
-define('CS_MEMBER', 0, false);
-define('CS_EXMEMBER', -1, false);
+define('CS_ADMIN', 1000);
+define('CS_COADMIN', 900);
+define('CS_WAECHTER', 20);
+define('CS_JACKASS', 10);
+define('CS_WARLORD', 90);
+define('CS_KONVENTIONIST', 80);
+define('CS_SUPPORTER', 70);
+define('CS_MITGLIEDERMINISTER', 50);
+define('CS_MEMBER', 0);
+define('CS_EXMEMBER', -1);
 
 $items = array('cpu', 'ram', 'mm', 'bb', 'lan', 'fw', 'mk', 'av', 'sdk', 'ips', 'ids', 'trojan', 'rh');
 
@@ -537,9 +537,9 @@ function isattackallowed(&$ret, &$ret2)
 { //---------------- IS ATTACK ALLOWED ----------------
     global $STYLESHEET, $REMOTE_FILES_DIR, $DATADIR, $usr, $pc, $usrid, $localhost;
 #if($localhost || is_noranKINGuser($usrid)) return true;
-    define('TO_1', 2 * 60, false);
+    define('TO_1', 2 * 60);
     $x = floor((5 / 3) * (10 - $pc['lan']) + 5) * 60;
-    define('TO_2', $x, false);
+    define('TO_2', $x);
     $a = $usr['la'] + TO_1;
     $b = $pc['la'] + TO_2;
     if ($a > $b) {

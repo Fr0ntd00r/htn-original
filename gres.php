@@ -162,10 +162,10 @@ $ram_levels = array(
     9 => 4096,
 );
 
-define('DPH_ADS', 22, false);
-define('DPH_DIALER', 24, false);
-define('DPH_AUCTIONS', 26, false);
-define('DPH_BANKHACK', 32, false);
+define('DPH_ADS', 22);
+define('DPH_DIALER', 24);
+define('DPH_AUCTIONS', 26);
+define('DPH_BANKHACK', 32);
 
 function gFormatText(&$s)
 {
@@ -213,7 +213,7 @@ function create_sid()
     // Session-ID mit beliebig vielen Zeichen.
     // Bei der Generierung werden mehrere Zufallszahlen ber&uuml;cksichtigt
     //  by I.Runge 2004
-    define('SID_LENGTH', 15, false); # Anzahl der Zeichen
+    define('SID_LENGTH', 15); # Anzahl der Zeichen
     mt_srand((double)microtime() * 1000000);
     $sid = crypt(randomx(mt_rand(5, 20)), randomx(mt_rand(3, 15)));
     $sid = str_replace('/', randomchar(), $sid);

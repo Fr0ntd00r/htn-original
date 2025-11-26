@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 if (!defined('IN_HTN')) {
     die('Hacking attempt');
@@ -11,11 +11,11 @@ switch ($action) {
     case 1: // Geld aus Clusterkasse eines Clusters mit mehr als einer Million Credits klauen
         $victim = db_query('SELECT * FROM clusters WHERE money>1000000 ORDER BY RAND() LIMIT 1;');
         if (!$victim) {
-            continue;
+            break;
         }
         $victim = mysql_fetch_assoc($victim);
         if ($victim['code'] == '') {
-            continue;
+            break;
         }
         $creds = (int)$victim['money'];
         $creds = floor($creds / 1.5);
@@ -41,11 +41,11 @@ switch ($action) {
     case 2: // PC von User aus dem oberen Teil der Rangliste blockieren
         $victim = db_query('SELECT * FROM users WHERE rank<=50 ORDER BY RAND() LIMIT 1;');
         if (!$victim) {
-            continue;
+            break;
         }
         $victim = mysql_fetch_assoc($victim);
         if ((int)$victim['id'] == 0) {
-            continue;
+            break;
         }
         #echo '<br>id='.$victim['id'];
         $vpc = @mysql_fetch_assoc(
@@ -72,11 +72,11 @@ switch ($action) {
         );
         echo mysql_error();
         if (!$victim) {
-            continue;
+            break;
         }
         $victim = mysql_fetch_assoc($victim);
         if ((int)$victim['id'] == 0) {
-            continue;
+            break;
         }
         #echo '<br>id='.$victim['id'];
         $vpc = @mysql_fetch_assoc(

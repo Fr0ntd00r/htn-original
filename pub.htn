@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 #if(substr_count($_SERVER['HTTP_HOST'],'.')>1) { header('Location: http://htnsrv.org/pub.htn'); exit; }
 
@@ -7,7 +7,7 @@ $starttime = microtime();
 include('gres.php');
 include('layout.php');
 
-define('REG_CODE_LEN', 24, false);
+define('REG_CODE_LEN', 24);
 
 $action = $_REQUEST['page'];
 if ($action == '') {
@@ -26,7 +26,7 @@ if ($action == '') {
     $action = $_REQUEST['d'];
 }
 
-function showdoc($te = '', $fn)
+function showdoc($fn, $te = '')
 {
     if ($te != '') {
         $x = ' - '.$te;
@@ -44,28 +44,28 @@ function showdoc($te = '', $fn)
 switch ($action) {
 
     case 'faq':
-        showdoc('FAQ', 'faq');
+        showdoc('faq', 'FAQ');
         break;
     case 'credits':
-        showdoc('Team', 'credits');
+        showdoc('credits', 'Team');
         break;
     case 'newpwd':
-        showdoc('Neues Passwort anfordern', 'newpwd');
+        showdoc('newpwd', 'Neues Passwort anfordern');
         break;
     case 'rules':
-        showdoc('Regeln', 'rules');
+        showdoc('rules', 'Regeln');
         break;
     case 'chat':
-        showdoc('Chat', 'chat');
+        showdoc('chat', 'Chat');
         break;
     case 'impressum':
-        showdoc('Impressum', 'impressum');
+        showdoc('impressum', 'Impressum');
         break;
     case 'refinfo':
-        showdoc('Werben von neuen Benutzern', 'refinfo');
+        showdoc('refinfo', 'Werben von neuen Benutzern');
         break;
     case 'regelverstoss':
-        showdoc('Regelversto&szlig; melden', 'regelverstoss');
+        showdoc('regelverstoss', 'Regelversto&szlig; melden');
         break;
         break;
 
